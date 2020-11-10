@@ -1,0 +1,122 @@
+@import './varliables';
+
+@each $colorKey, $color in $colors {
+  // 字体颜色
+  .text-#{$colorKey} {
+    color: $color;
+  }
+  // 背景颜色
+  .bg-#{$colorKey} {
+    background-color: $color;
+  }
+}
+
+// 字体大小
+@each $fontSizeKey, $fontSize in $font-sizes {
+  .fs-#{$fontSizeKey} {
+    font-size: $fontSize * $font-base-size;
+  }
+}
+
+// 字体粗细
+@each $fontWeightKey, $fontWeight in $font-weight-size {
+  .fw-#{$fontWeightKey} {
+    font-weight: $fontWeight;
+  }
+}
+
+// 文字对齐方式
+@each $var in (left, center, right) {
+  .text-#{$var} {
+    text-align: $var;
+  }
+}
+
+// 边距
+@each $typeKey, $type in $spacing-types {
+  @each $sizeKey, $size in $spacing-sizes {
+    // .m-1 {}
+    .#{$typeKey}-#{$sizeKey} {
+      #{$type}: $size * $spacing-base-size
+    }
+
+    // .mx {}
+    .#{$typeKey}x-#{$sizeKey} {
+      #{$type}-left: $size * $spacing-base-size;
+      #{$type}-right: $size * $spacing-base-size;
+    }
+
+    // .my {}
+    .#{$typeKey}y-#{$sizeKey} {
+      #{$type}-top: $size * $spacing-base-size;
+      #{$type}-bottom: $size * $spacing-base-size;
+    }
+  }
+
+  @each $directionKey, $direction in $spacing-directions {
+    @each $sizeKey, $size in $spacing-sizes {
+      // .mt-1 {}
+      .#{$typeKey}#{$directionKey}-#{$sizeKey} {
+        #{$type}-#{$direction}: $size * $spacing-base-size
+      }
+    }
+  }
+}
+
+
+
+// flex布局相关
+.d-flex {
+  display: flex;
+}
+.flex-column {
+  flex-direction: column;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.flex-1 {
+  flex: 1;
+}
+@each $key, $value in $flex-jc {
+  .jc-#{$key} {
+    justify-content: $value;
+  }
+}
+@each $key, $value in $flex-ai {
+  .ai-#{$key} {
+    align-items: $value;
+  }
+}
+
+// 边框
+@each $directionKey, $direction in $border-direcetions {
+  .border-#{$directionKey} {
+    border-#{$direction}: 0.026667rem solid #f1f1f1
+  }
+}
+
+// 隐藏输入框边框
+.border-none {
+  border: none;
+  outline: none;
+}
+
+// 清除浮动
+.clearfix::after {
+  display: block;
+  content: '';
+  clear: both;
+}
+.clearfix {
+  zoom: 1;
+}
+
+
+
+// 单行省略
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

@@ -1,17 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title><%= htmlWebpackPlugin.options.title %></title>
-  </head>
-  <body>
-    <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+  <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+  <title><%= htmlWebpackPlugin.options.title %></title>
+  <script src="https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script>
+  <script>
+    if ('addEventListener' in document) {
+      document.addEventListener('DOMContentLoaded', function () {
+        FastClick.attach(document.body);
+      }, false);
+    }
+  </script>
+</head>
+
+<body>
+  <noscript>
+    <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
+      Please enable it to continue.</strong>
+  </noscript>
+  <div id="app"></div>
+  <!-- built files will be auto injected -->
+
+  <!-- <script>
+    function remRefresh() {
+      // 1.获取屏幕的宽度
+      let clientWidth = document.documentElement.clientWidth
+
+      // 2.将屏幕宽度等分,等分的目的：降低单位rem的大小，便于换算，提高精确度
+      let fontValue = clientWidth / 10
+
+      // 3.设置根节点字体的大小
+      document.documentElement.style.fontSize = fontValue + 'px'
+
+      // 4.设置body的默认大小
+      document.body.style.fontSize = '16px'
+    }
+
+    window.addEventListener('pageshow', () => {
+      remRefresh()
+    })
+    let timeoutId
+    window.addEventListener('resize', () => {
+      timeoutId && clearTimeout(timeoutId)
+      timeoutId = setTimeout(() => {
+        console.log('resize');
+        remRefresh()
+      }, 2000)
+
+    })
+  </script> -->
+</body>
+
 </html>
