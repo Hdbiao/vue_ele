@@ -10,7 +10,7 @@
         class="iconfont"
         :class="[item.icon, item.url === $route.path ? 'text-primary' : '']"
       ></span>
-      <span>{{ item.field_name }}</span>
+      <span style="margin-top: 0.08rem">{{ item.field_name }}</span>
     </router-link>
   </div>
 </template>

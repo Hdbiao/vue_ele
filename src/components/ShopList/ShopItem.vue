@@ -1,5 +1,15 @@
 <template>
-  <div class="shop-item px-1 py-2 d-flex">
+  <div
+    class="shop-item px-1 py-2 d-flex"
+    @click="
+      $router.push({
+        path: '/shop',
+        query: {
+          id: shopItem.id,
+        },
+      })
+    "
+  >
     <img
       :src="`https://elm.cangdu.org/img/${shopItem.image_path}`"
       alt=""
@@ -23,7 +33,7 @@
       </header>
       <div class="mt-1 d-flex jc-between">
         <section class="d-flex">
-          <rate :score="3.6"></rate>
+          <rate :score="shopItem.rating" :size="1"></rate>
           <span class="ml-1 fs-sm text-grey-1">{{
             "月售" + shopItem.recent_order_num
           }}</span>
@@ -39,7 +49,7 @@
       </div>
       <div class="d-flex jc-between">
         <section>
-          <p>
+          <p class="text-grey-1">
             {{
               `￥${shopItem.float_minimum_order_amount}起送/配送费约${shopItem.float_delivery_fee}元`
             }}
@@ -60,7 +70,7 @@
 <script>
 import Rate from "../../components/Rate/index";
 export default {
-  name: "ShopList",
+  name: "ShopItem",
   props: {
     shopItem: Object,
   },

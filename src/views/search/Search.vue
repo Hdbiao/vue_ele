@@ -18,24 +18,35 @@
         @click="searchTarget"
       />
     </form>
+
+    <ul>
+      <li></li>
+    </ul>
   </div>
 </template>
 
 <script>
 import HeaderTop from "../../components/HeaderTop/index";
+import { mapState } from "vuex";
 export default {
   name: "Search",
   components: {
     HeaderTop,
+  },
+  computed: {
+    ...mapState(["searchShopList"]),
   },
   data() {
     return {
       searchValue: "",
     };
   },
+  created() {
+    this.$store.dispatch("getSearchShopList");
+  },
   methods: {
     searchTarget() {
-      console.log(this.searchValue);
+      this.$store.dispatch("getSearchShopList", this.searchValue);
     },
   },
 };

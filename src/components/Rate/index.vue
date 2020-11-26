@@ -2,11 +2,11 @@
   <div class="rate">
     <span
       class="star-item"
-      :class="itemClass"
+      :class="[itemClass, `star-item-${size}`]"
       v-for="(itemClass, index) in itemClasses"
       :key="index"
     ></span>
-    <span class="score text-yellow">{{ score }}</span>
+    <span class="score text-yellow fs-md">{{ score }}</span>
   </div>
 </template>
 
@@ -19,26 +19,48 @@ export default {
   props: {
     score: {
       type: Number,
+      default: 0,
+    },
+    size: {
+      type: Number,
+      default: 1,
     },
   },
   computed: {
     itemClasses() {
-      //计算属性
-      let result = [];
-      let score = Math.floor(this.score * 2) / 2;
-      let hasDecimal = score % 1 !== 0; //是否有效数
-      let integer = Math.floor(score); //取整
-      for (var i = 0; i < integer; i++) {
+      // //计算属性
+      // let result = [];
+      // let score = Math.floor(this.score * 2) / 2;
+      // let hasDecimal = score % 1 !== 0; //是否有效数
+      // let integer = Math.floor(score); //取整
+      // for (var i = 0; i < integer; i++) {
+      //   result.push(CLS_ON);
+      // }
+      // if (hasDecimal) {
+      //   //有且最多一个半星
+      //   result.push(CLS_HALF);
+      // }
+      // while (result.length < LENGTH) {
+      //   result.push(CLS_OFF);
+      // }
+      // //数组填充完毕
+      // return result;
+
+      const result = [];
+      let { score } = this;
+      let arr = score
+        .toString()
+        .split(".")
+        .map((item) => parseInt(item));
+      for (let i = 0; i < arr[0]; i++) {
         result.push(CLS_ON);
       }
-      if (hasDecimal) {
-        //有且最多一个半星
+      if (arr[1] && arr[1] >= 5) {
         result.push(CLS_HALF);
       }
       while (result.length < LENGTH) {
         result.push(CLS_OFF);
       }
-      //数组填充完毕
       return result;
     },
   },
@@ -48,8 +70,19 @@ export default {
 <style lang="scss" scoped>
 .star-item {
   display: inline-block;
-  width: 0.24rem;
-  height: 0.24rem;
+
+  &.star-item-1 {
+    width: 0.24rem;
+    height: 0.24rem;
+  }
+  &.star-item-2 {
+    width: 0.32rem;
+    height: 0.32rem;
+  }
+  &.star-item-3 {
+    width: 0.426667rem;
+    height: 0.426667rem;
+  }
   &.on {
     background: url("./imgs/on.png") no-repeat;
     background-size: 100% 100%;

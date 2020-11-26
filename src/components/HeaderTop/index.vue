@@ -3,7 +3,7 @@
     <span class="left">
       <slot name="left"></slot>
     </span>
-    <span class="title ellipsis text-center">{{ title }}</span>
+    <span class="title ellipsis text-center fw-700 fs-xxl">{{ title }}</span>
     <span class="right">
       <slot name="right"></slot>
     </span>
@@ -35,7 +35,6 @@ export default {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 18px;
     width: 50%;
   }
   .right {

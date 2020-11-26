@@ -6,7 +6,7 @@
 
     <section>
       <router-link
-        to="/login"
+        :to="userInfo.user_id ? '/userinfo' : '/login'"
         tag="div"
         class="p-2 d-flex jc-between ai-center bg-primary text-white"
       >
@@ -39,7 +39,9 @@
           </svg>
         </span>
         <div class="flex-1 ml-2">
-          <p class="fs-xxl fw-700 mb-0">登录/注册</p>
+          <p class="fs-xxl fw-700 mb-0" v-if="!userInfo.mobile">
+            {{ userInfo.username || "登录/注册" }}
+          </p>
           <p class="d-flex ai-center mt-1">
             <span
               ><svg
@@ -58,7 +60,7 @@
                   fill="#fff"
                 ></path></svg
             ></span>
-            <span>暂无绑定手机号</span>
+            <span>{{ userInfo.mobile || "暂无绑定手机号" }}</span>
           </p>
         </div>
         <span>
@@ -90,7 +92,9 @@
           class="info-data-link d-flex flex-column jc-cneter ai-center"
         >
           <span class="pt-2 pb-1">
-            <strong class="fs-xxxl text-orange">0.00</strong>
+            <strong class="fs-xxxl text-orange">{{
+              userInfo.balance || "0.00"
+            }}</strong>
             元
           </span>
           <span class="text-grey-1 pb-1">我的余额</span>
@@ -101,7 +105,9 @@
           class="info-data-link d-flex flex-column jc-center ai-center"
         >
           <span class="pt-2 pb-1">
-            <strong class="fs-xxxl text-yellow">0</strong>
+            <strong class="fs-xxxl text-yellow">{{
+              userInfo.gift_amount || 0
+            }}</strong>
             个
           </span>
           <span class="text-grey-1 pb-1">我的优惠</span>
@@ -112,7 +118,9 @@
           class="info-data-link d-flex flex-column jc-center ai-center"
         >
           <span class="pt-2 pb-1">
-            <strong class="fs-xxxl text-green">0</strong>
+            <strong class="fs-xxxl text-green">{{
+              userInfo.point || 0
+            }}</strong>
             分
           </span>
           <span class="text-grey-1 pb-1">我的积分</span>
@@ -345,10 +353,14 @@
 
 <script>
 import HeaderTop from "../../components/HeaderTop/index";
+import { mapState } from "vuex";
 export default {
   name: "Profile",
   components: {
     HeaderTop,
+  },
+  computed: {
+    ...mapState(["userInfo"]),
   },
 };
 </script>

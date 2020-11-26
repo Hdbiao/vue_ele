@@ -17,6 +17,7 @@ switch (process.env.NODE_ENV) {
 axios.defaults.timeout = 10000;
 axios.defaults.withCredentials = true;
 
+
 // 设置post请求的参数格式
 axios.defaults.headers['Content-Type'] = 'application/json'
 
